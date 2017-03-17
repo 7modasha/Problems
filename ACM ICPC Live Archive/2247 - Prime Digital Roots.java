@@ -1,4 +1,3 @@
-import java.io.*;
 import java.util.*;
 
 public class Main {
@@ -11,39 +10,42 @@ public class Main {
         sieve();
 
         int n = in.nextInt();
-        int c = 0;
 
-        while (n != 0) {
+        while(n != 0) {
 
-            int tmp = n;
+            int ans = digitalRoot(n);
 
-            System.out.print(c++ > 0 ? '\n' : '\0');
-
-            while (Integer.toString(n).length() != 1) {
-
-                if (!isPrime(n)) {
-                    n = digitSum(n);
-                } else {
-                    break;
-                }
-            }
-
-            int ans = isPrime(n) ? n : tmp;
-            System.out.printf("%7d%7s", tmp, isPrime(n) ? Integer.toString(n) : "none");
+            if (ans != -1)
+                System.out.printf("%7d %7d\n", n, ans);
+            else
+                System.out.printf("%7d %7s\n", n, "none");
 
             n = in.nextInt();
         }
     }
 
-    public static int digitSum(int n){
+    public static int digitalRoot(int n){
 
-        String a = Integer.toString(n);
         int sum = 0;
 
-        for (int i = 0; i < a.length(); i++)
-            sum += a.charAt(i) - '0';
+        if(isPrime(n)) return n;
 
-        return sum;
+        while (n > 9){
+
+            sum = 0;
+
+            //Sum the digit of the number
+            while(n != 0){
+                sum += n % 10;
+                n /= 10;
+            }
+
+            n = sum;
+
+            if (isPrime(n)) return n;
+        }
+
+        return -1;
     }
 
     public static boolean isPrime(int n){
