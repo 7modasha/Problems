@@ -2,17 +2,11 @@
 
 using namespace std;
 
-void solve(){
+int main(){
 
-}
-
-int main(int argc, char const *argv[]){
-
+#ifndef ONLINE_JUDGE
 	freopen("in.txt", "r", stdin);
+#endif
 
-	int t;
-	scanf("%d", &t);
-	while(t-- > 0) solve();
-	
 	return 0;
 }
